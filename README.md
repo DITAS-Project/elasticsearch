@@ -1,4 +1,4 @@
-# Elasticsearch dockerfiles used on DITAS
+# DITAS Elasticsearch instances
 
 ## Blueprint Elasticsearch
 Elasticsearch used to store blueprints information. User and pass must be defined at build time.
