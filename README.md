@@ -1,10 +1,10 @@
 # DITAS Elasticsearch instances
 
 ## Blueprint Elasticsearch
-Elasticsearch (v2.4.6) is used to store blueprints information. User and pass must be defined at build time.
+Elasticsearch (v7.2.0) is used to store blueprints information. Password must be defined at build time. `elastic` is the default user.
 
 ```
-docker build -t elasticsearch_blueprint --build-arg es_user=YOUR_USER --build-arg es_pass=YOUR_PASS .
+docker build -t elasticsearch_blueprint --build-arg es_password=YOUR_PASS .
 docker run -p 50014:9200 -p 50015:9300 --restart unless-stopped --log-opt max-size=100m -d elasticsearch_blueprint
 ```
 

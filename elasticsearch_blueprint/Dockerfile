@@ -1,15 +1,13 @@
-FROM elasticsearch:2.4.6
+FROM elasticsearch:7.2.0
 
-RUN rm -rf /etc/elasticsearch
-RUN ln -s /usr/share/elasticsearch/config /etc/elasticsearch
+ENV script.painless.regex.enabled=true
+ENV node.ml=false
+ENV xpack.ml.enabled=false
+ENV discovery.type=single-node
+ENV xpack.security.enabled=true
 
-RUN /usr/share/elasticsearch/bin/plugin install license
-RUN /usr/share/elasticsearch/bin/plugin install shield
+RUN printf "y" | /usr/share/elasticsearch/bin/elasticsearch-keystore create
 
-ENV script.inline=true
-ENV script.indexed=true
+ARG es_password
 
-ARG es_user
-ARG es_pass
-
-RUN /usr/share/elasticsearch/bin/shield/esusers useradd $es_user -p $es_pass -r admin
+RUN printf es_password | /usr/share/elasticsearch/bin/elasticsearch-keystore add --stdin "bootstrap.password"
