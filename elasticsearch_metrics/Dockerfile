@@ -9,5 +9,5 @@ ARG es_pass
 
 # Set Password for superuser
 RUN elasticsearch-keystore create
-RUN echo "ditasmetrics" | elasticsearch-keystore add bootstrap.password --stdin
+RUN echo $es_pass | elasticsearch-keystore add bootstrap.password --stdin
 RUN elasticsearch-users useradd $es_user -p $es_pass -r superuser
