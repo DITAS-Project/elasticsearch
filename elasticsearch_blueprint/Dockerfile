@@ -10,4 +10,4 @@ RUN printf "y" | /usr/share/elasticsearch/bin/elasticsearch-keystore create
 
 ARG es_password
 
-RUN printf es_password | /usr/share/elasticsearch/bin/elasticsearch-keystore add --stdin "bootstrap.password"
+RUN printf $es_password | /usr/share/elasticsearch/bin/elasticsearch-keystore add --stdin "bootstrap.password"
